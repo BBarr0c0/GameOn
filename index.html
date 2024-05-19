@@ -73,12 +73,12 @@
               name="reserve"
               action="index.html"
               method="get"
-              onsubmit="return validate();"
+              novalidate
             >
 
               <div
                 class="formData">
-                <label>Prénom</label>
+                <label for="first">Prénom</label>
                 <br>
                 <input
                   class="text-control"
@@ -92,7 +92,7 @@
 
               <div
                 class="formData">
-                <label>Nom</label>
+                <label for="last">Nom</label>
                 <br>
                 <input
                   class="text-control"
@@ -105,7 +105,7 @@
 
               <div
                 class="formData">
-                <label>E-mail</label>
+                <label for="email">E-mail</label>
                 <br>
                 <input
                   class="text-control"
@@ -118,7 +118,7 @@
 
               <div
                 class="formData">
-                <label>Date de naissance</label>
+                <label for="birthdate">Date de naissance</label>
                 <br>
                 <input
                   class="text-control"
@@ -131,8 +131,14 @@
 
               <div
                 class="formData">
-                <label>À combien de tournois GameOn avez-vous déjà participé ?</label><br>
-                <input type="number" class="text-control" id="quantity" name="quantity" min="0" max="99">
+                <label for="quantity">À combien de tournois GameOn avez-vous déjà participé ?</label><br>
+                <input 
+                  type="number" 
+                  class="text-control" 
+                  id="quantity" 
+                  name="quantity" 
+                  min="0" max="99"
+                >
               </div>
               <p class="text-label">A quel tournoi souhaitez-vous participer cette année ?</p>
               
@@ -217,7 +223,6 @@
                   class="checkbox-input"
                   type="checkbox"
                   id="checkbox1"
-                  checked
                 />
                 <label class="checkbox2-label" for="checkbox1" required>
                   <span class="checkbox-icon"></span>
