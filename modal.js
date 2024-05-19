@@ -118,17 +118,116 @@ function checkEmail(email) {
 	return true;
 }
 
+// Checking the birthdate
+
+function checkBirthdate(birthdate) {
+	const userAge = calculateUserAge(birthdate);
+  
+	switch (true) {
+		case !birthdate.value:
+			showErrorMessage(
+				birthdate,
+				'Veuillez entrer votre date de naissance'
+			);
+			return false;
+		case userAge < 18:
+			showErrorMessage(
+				birthdate,
+				'Vous devez avoir plus de 18 ans pour participer'
+			);
+			return false;
+		case userAge > 130:
+			showErrorMessage(
+				birthdate,
+				"Vous n'êtes plus de ce monde pour participer"
+			);
+			return false;
+		default:
+			hideErrorMessage(birthdate);
+			return true;
+	}
+}
+  
+// Calculation of the user's age
+
+function calculateUserAge(birthdate) {
+	const birthDate = new Date(birthdate.value);
+	const today = new Date();
+	
+	let age = today.getFullYear() - birthDate.getFullYear();
+	
+	// Check if the user hasn't had their birthday yet this year
+	if (today.getMonth() < birthDate.getMonth() || 
+		(today.getMonth() === birthDate.getMonth() && today.getDate() < birthDate.getDate())) {
+		age--;
+	}
+	
+	return age;
+}
+  
+// Checking quantity
+
+function checkQuantity(quantity) {
+	if (quantity.value < 0 || quantity.value > 99 || quantity.value === "") {
+		showErrorMessage(
+			quantity,
+			'Veuillez renseigner un nombre entre 0 et 99',
+		);
+		return false;
+	}
+  
+	hideErrorMessage(quantity);
+	return true;
+}
+  
+// Checking cities
+
+function checkCity(cities) {
+	for (let i = 0; i < cities.length; i++) {
+		if (cities[i].checked) {
+			hideErrorMessage(cities[0]);
+			return true;
+		}
+	}
+
+	showErrorMessage(cities[0],'Veuillez sélectionner une ville');
+	return false;
+}
+  
+// Checking the terms of use
+
+function checkConditions(conditions) {
+	if (!conditions.checked) {
+		showErrorMessage(
+			conditions,
+			"Vous devez accepter les conditions d'utilisation",
+		);
+		return false;
+	}
+  
+	hideErrorMessage(conditions);
+	return true;
+}
+
 // Validate the form
 
 function validate() {
 	const isFirstNameValid = checkFirstName(firstname);
 	const isLastNameValid = checkLastName(lastname);
 	const isEmailValid = checkEmail(email);
+	const isBirthdateValid = checkBirthdate(birthdate);
+	const isQuantityValid = checkQuantity(quantity);
+  	const isCitySelected = checkCity(cities);
+	const isConditionsValid = checkConditions(conditions);
 
 	return (
 		isFirstNameValid &&
 		isLastNameValid &&
-		isEmailValid
+		isEmailValid &&
+		isBirthdateValid &&
+		isQuantityValid &&
+    	isCitySelected &&
+		isConditionsValid
 	);
 }
 
