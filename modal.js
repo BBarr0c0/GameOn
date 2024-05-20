@@ -28,16 +28,11 @@ const closeModalBtn = document.querySelector(".close");
 
 // Close modal event
 closeModalBtn.addEventListener("click", closeModal);
-window.addEventListener("click", outsideClick);
+window.addEventListener("click", closeModal);
 
-// Close modal if click on cross
-function closeModal() {
-  modalbg.style.display = "none";
-}
-
-// Close modal if outside click
-function outsideClick(e) {
-  if (e.target == modalbg) {
+// Close modal if outside click or click on cross
+function closeModal(e) {
+  if (e.target == modalbg || e.target == closeModalBtn) {
     modalbg.style.display = "none";
   }
 }
@@ -73,34 +68,44 @@ const conditions = document.getElementById('checkbox1');
 const regexFirstLast = new RegExp('^[A-ZÀ-ÖØ-Ý][a-zà-öø-ý]*(?:[- ][A-ZÀ-ÖØ-Ý][a-zà-öø-ý]*)?$');
 const regexEmail = new RegExp('^[a-zA-Z0-9._-]+@[a-zA-Z0-9._-]+\\.[a-z]{2,4}$');
 
-// Checking the first name
+// First and last name check function
 
-function checkFirstName(firstname) {
-	if (!regexFirstLast.test(firstname.value) || firstname.value.length < 2 || firstname.value.length > 50) {
+function checkName(name, inputType) {
+	switch (true) {
+	  case !regexFirstLast.test(name.value):
 		showErrorMessage(
-			firstname,
-			'Le prénom doit contenir entre 2 et 50 caractères et commencer par une majuscule.',
+		  name,
+		  `Le ${inputType} doit commencer par une majuscule et ne pas avoir de caractère spécial.`
 		);
 		return false;
-	} 
-
-	hideErrorMessage(firstname);
-	return true;
-}
-
-// Checking the last name
-
-function checkLastName(lastname) {
-	if (!regexFirstLast.test(lastname.value) || lastname.value.length < 2 || lastname.value.length > 50) {
+	  case name.value.length < 2:
 		showErrorMessage(
-			lastname,
-			'Le nom doit contenir entre 2 et 50 caractères et commencer par une majuscule.',
+		  name,
+		  `Le ${inputType} doit avoir au moins deux lettres.`
 		);
 		return false;
+	  case name.value.length > 50:
+		showErrorMessage(
+		  name,
+		  `Le ${inputType} doit être moins long.`
+		);
+		return false;
+	  default:
+		hideErrorMessage(name);
+		return true;
 	}
-
-	hideErrorMessage(lastname);
-	return true;
+}
+  
+// Checking the first name
+  
+function checkFirstName(firstname) {
+	return checkName(firstname, 'prénom');
+}
+  
+// Checking the last name
+  
+function checkLastName(lastname) {
+	return checkName(lastname, 'nom');
 }
 
 // Checking the email
@@ -235,9 +240,35 @@ form.onsubmit = (e) => {
   e.preventDefault();
 
   if (validate()) {
+	showSuccessModal();
     modalbg.style.display = 'none';
     form.reset();
   }
 
   return false;
 };
+
+function showSuccessModal() {
+	const main = document.querySelector('main');
+	const container = document.createElement('div');
+	container.classList.add('bground');
+	container.style.display = "block";
+	main.appendChild(container);
+	container.innerHTML = `
+		<div class="content content-success">
+    		<span class="close close-btn"></span>
+			<div class="modal-content">
+				<h2>Merci pour <br> votre inscription</h2>
+				<button class="btn-submit modal-btn close-btn">Fermer</button>
+			</div>
+		</div>
+    `;
+
+	const closeBtns = container.querySelectorAll('.close-btn');
+	closeBtns.forEach((closeBtn) => {
+		closeBtn.addEventListener('click', () => {
+			container.remove();
+		});
+	});
+
+}
