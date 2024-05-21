@@ -10,7 +10,7 @@ function editNav() {
 // DOM Elements
 const modalbg = document.querySelector(".bground");
 const modalBtn = document.querySelectorAll(".modal-btn");
-const formData = document.querySelectorAll(".formData");
+const input = document.querySelectorAll("input");
 const form = document.querySelector('form[name="reserve"]');
 
 // launch modal event
@@ -34,6 +34,9 @@ window.addEventListener("click", closeModal);
 function closeModal(e) {
   if (e.target == modalbg || e.target == closeModalBtn) {
     modalbg.style.display = "none";
+	input.forEach((input) => {
+        hideErrorMessage(input);
+    });
   }
 }
 

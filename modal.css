@@ -1,8 +1,8 @@
 :root {
   --font-default: "DM Sans", Arial, Helvetica, sans-serif;
-  --font-slab: var(--font-default);
   --modal-duration: 0.8s;
 }
+
 * {
   box-sizing: border-box;
   margin: 0;
@@ -15,7 +15,6 @@ body {
   margin: 0;
   display: flex;
   flex-direction: column;
-  background-image: url("background.png");
   font-family: var(--font-default);
   font-size: 18px;
   max-width: 1300px;
@@ -101,27 +100,7 @@ main {
   background: #3876ac;
 }
 
-.footer {
-  margin: 20px;
-  padding: 10px;
-  font-family: var(--font-slab);
-}
-
 /* Modal form */
-
-.button {
-  background: #fe142f;
-  margin-top: 0.5em;
-  padding: 1em;
-  color: #fff;
-  border-radius: 15px;
-  cursor: pointer;
-  font-size: 16px;
-}
-
-.button:hover {
-  background: #3876ac;
-}
 
 .smFont {
   font-size: 16px;
@@ -151,6 +130,10 @@ main {
   position: relative;
   color: #fff;
   padding-top: 10px;
+}
+
+.content-success {
+  max-height: 800px;
 }
 
 .modal-body {
@@ -204,12 +187,33 @@ input {
   border: 2px solid #e54858;
 }
 
-/* 
-input[data-error]::after {
-    content: attr(data-error);
-    font-size: 0.4em;
-    color: red;
-} */
+/* success modal */
+
+.content h2 {
+	margin-bottom: 20px;
+	font-size: 36px;
+	font-weight: 400;
+	grid-row: 3;
+	text-align: center;
+  position: relative;
+  bottom: 50px;
+  left: 0;
+}
+
+.content .close-btn {
+  margin: auto;
+	grid-row: 5;
+}
+
+.modal-content {
+	display: grid;
+	grid-template-rows: repeat(5, 1fr);
+	gap: 40px;
+	padding: 40px 40px 0 40px;
+	max-width: 600px;
+	height: 100%;
+  margin-bottom: 45px;
+}
 
 .checkbox-label,
 .checkbox2-label {
@@ -326,6 +330,7 @@ input[data-error]::after {
 }
 
 /* custom select styles */
+
 .custom-select {
   position: relative;
   font-family: Arial;
@@ -342,6 +347,7 @@ input[data-error]::after {
 }
 
 /* Style the arrow inside the select element: */
+
 .select-selected:after {
   position: absolute;
   content: "";
@@ -357,6 +363,7 @@ input[data-error]::after {
 }
 
 /* Point the arrow upwards when the select box is open (active): */
+
 .select-selected.select-arrow-active:after {
   transform: rotate(135deg);
   top: 13px;
@@ -374,6 +381,7 @@ input[data-error]::after {
 }
 
 /* Style items (options): */
+
 .select-items {
   position: absolute;
   background-color: #fff;
@@ -384,6 +392,7 @@ input[data-error]::after {
 }
 
 /* Hide the items when the select box is closed: */
+
 .select-hide {
   display: none;
 }
@@ -394,6 +403,7 @@ input[data-error]::after {
 }
 
 /* custom select end */
+
 .text-label {
   font-weight: normal;
   font-size: 16px;
