@@ -12,6 +12,7 @@ const modalbg = document.querySelector(".bground");
 const modalBtn = document.querySelectorAll(".modal-btn");
 const input = document.querySelectorAll("input");
 const closeModalBtn = document.querySelector(".close");
+const body = document.querySelector("body");
 
 // launch modal event
 modalBtn.forEach((btn) => btn.addEventListener("click", launchModal));
@@ -19,6 +20,7 @@ modalBtn.forEach((btn) => btn.addEventListener("click", launchModal));
 // launch modal form
 function launchModal() {
   modalbg.style.display = "block";
+  body.style.overflow = "hidden";
 }
 
 // TO CLOSE MODAL
@@ -31,6 +33,7 @@ window.addEventListener("click", closeModal);
 function closeModal(e) {
   if (e.target == modalbg || e.target == closeModalBtn) {
     modalbg.style.display = "none";
+	body.style.overflow = "auto";
 	input.forEach((input) => {
         hideErrorMessage(input);
     });
@@ -256,6 +259,7 @@ function showSuccessModal() {
 	const container = document.createElement('div');
 	container.classList.add('bground');
 	container.style.display = "block";
+	body.style.overflow = "hidden";
 	main.appendChild(container);
 	container.innerHTML = `
 		<div class="content content-success">
@@ -270,6 +274,7 @@ function showSuccessModal() {
 	const closeBtns = container.querySelectorAll('.close-btn');
 	closeBtns.forEach((closeBtn) => {
 		closeBtn.addEventListener('click', () => {
+			body.style.overflow = "auto";
 			container.remove();
 		});
 	});
