@@ -7,11 +7,11 @@ function editNav() {
   }
 }
 
-// DOM Elements
+// DOM Elements to open and close modal form
 const modalbg = document.querySelector(".bground");
 const modalBtn = document.querySelectorAll(".modal-btn");
 const input = document.querySelectorAll("input");
-const form = document.querySelector('form[name="reserve"]');
+const closeModalBtn = document.querySelector(".close");
 
 // launch modal event
 modalBtn.forEach((btn) => btn.addEventListener("click", launchModal));
@@ -22,9 +22,6 @@ function launchModal() {
 }
 
 // TO CLOSE MODAL
-
-// DOM Element to close modal
-const closeModalBtn = document.querySelector(".close");
 
 // Close modal event
 closeModalBtn.addEventListener("click", closeModal);
@@ -65,6 +62,7 @@ const birthdate = document.getElementById('birthdate');
 const quantity = document.getElementById('quantity');
 const cities = document.querySelectorAll("input[name='location']");
 const conditions = document.getElementById('checkbox1');
+const form = document.querySelector('form[name="reserve"]');
 
 // Form variables
 
@@ -250,6 +248,8 @@ form.onsubmit = (e) => {
 
   return false;
 };
+
+// TO CREATE, DISPLAY AND REMOVE SUCCESS MODAL
 
 function showSuccessModal() {
 	const main = document.querySelector('main');

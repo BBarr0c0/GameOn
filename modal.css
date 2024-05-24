@@ -33,7 +33,6 @@ img {
 /* NAV */
 
 .topnav {
-  overflow: hidden;
   margin: 3.5%;
   display: flex;
 	justify-content: space-between;
@@ -49,7 +48,7 @@ img {
   margin: 5px;
   text-decoration: none;
   font-size: 20px;
-  font-family: Roboto, sans-serif;
+  font-weight: 600;
 }
 
 .topnav a:hover {
@@ -81,7 +80,6 @@ main {
   padding-right: 2vw;
   margin: 1px 20px 15px;
   border-radius: 2rem;
-  text-align: justify;
 }
 
 .modal-btn {
@@ -119,14 +117,13 @@ main {
 }
 
 .content {
-  margin: 5% auto;
+  margin: 10% auto 20% auto;
   width: 100%;
   max-width: 500px;
   animation-name: modalopen;
   animation-duration: var(--modal-duration);
   background: #232323;
   border-radius: 10px;
-  overflow: hidden;
   position: relative;
   color: #fff;
   padding-top: 10px;
@@ -137,7 +134,7 @@ main {
 }
 
 .modal-body {
-  padding: 15px 8%;
+  padding: 25px 8% 35px 8%;
   margin: 15px auto;
 }
 
@@ -196,8 +193,6 @@ input {
 	grid-row: 3;
 	text-align: center;
   position: relative;
-  bottom: 50px;
-  left: 0;
 }
 
 .content .close-btn {
@@ -209,7 +204,7 @@ input {
 	display: grid;
 	grid-template-rows: repeat(5, 1fr);
 	gap: 40px;
-	padding: 40px 40px 0 40px;
+	padding: 0 40px;
 	max-width: 600px;
 	height: 100%;
   margin-bottom: 45px;
@@ -314,6 +309,10 @@ input {
 
 .close:after {
   transform: rotate(-45deg);
+}
+
+.modal-body form .btn-submit {
+  margin-top: 20px;
 }
 
 .btn-submit,
@@ -499,7 +498,7 @@ input {
 footer {
   padding-left: 2vw;
   padding-right: 2vw;
-  margin: 0 20px;
+  margin: 0 20px 0 20px;
 }
 
 
@@ -525,8 +524,8 @@ footer {
     color: white;
   }
 
-  .topnav.responsive {
-    position: relative;
+  .topnav a span {
+    margin-right: 50px;
   }
 
   .topnav.responsive .icon {
